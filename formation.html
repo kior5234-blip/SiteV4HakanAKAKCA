@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Hakan Akakca — Formation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e1117;--surface:#161b27;--border:#20293a;--text:#cdd5e0;--muted:#3a4a60;--muted2:#5a6a80;--tag-bg:#1a2030;--accent:#8b5cf6;--accent-l:#a78bfa;--nav-h:60px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;}
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(14,17,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:100;}
+    .nav-logo{font-family:'DM Mono',monospace;font-size:1rem;color:var(--text);text-decoration:none;}
+    .nav-logo span{color:var(--accent-l);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:var(--muted2);text-decoration:none;font-size:.82rem;padding:5px 12px;border-radius:6px;transition:all .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface);}
+    .page-wrapper{padding-top:calc(var(--nav-h)+48px);padding-bottom:80px;max-width:900px;margin:0 auto;padding-left:24px;padding-right:24px;}
+    .breadcrumb{font-size:.75rem;color:var(--muted2);margin-bottom:20px;}
+    .breadcrumb a{color:var(--muted2);text-decoration:none;}
+    .breadcrumb a:hover{color:var(--accent-l);}
+    h1{font-size:2rem;font-weight:300;letter-spacing:-.02em;margin-bottom:36px;}
+    .section{margin-bottom:48px;}
+    .section-header{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--muted2);margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+    .tl-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:12px;display:grid;grid-template-columns:auto 1fr;gap:16px 20px;align-items:start;transition:border-color .2s;}
+    .tl-card:hover{border-color:var(--muted2);}
+    .tl-card.current{border-color:rgba(139,92,246,.4);}
+    .tl-dot-col{display:flex;flex-direction:column;align-items:center;padding-top:4px;}
+    .tl-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+    .tl-dot.old{background:var(--border);}
+    .tl-line{width:1px;background:var(--border);flex:1;margin-top:6px;min-height:20px;}
+    .tl-date{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em;}
+    .tl-title{font-size:1rem;font-weight:500;color:var(--text);margin-bottom:3px;}
+    .tl-school{font-size:.82rem;color:var(--muted2);margin-bottom:8px;}
+    .tl-body{font-size:.82rem;color:var(--muted2);line-height:1.7;}
+    .tl-badge{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--accent-l);border:1px solid rgba(139,92,246,.3);margin-bottom:8px;}
+    .tl-links{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;}
+    .tl-link{font-size:.75rem;color:var(--muted2);text-decoration:none;padding:5px 11px;border:1px solid var(--border);border-radius:5px;background:var(--tag-bg);transition:all .2s;}
+    .tl-link:hover{border-color:var(--accent);color:var(--accent-l);}
+    .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+    .tag{background:var(--tag-bg);color:var(--muted2);font-size:.72rem;padding:3px 10px;border-radius:4px;border:1px solid var(--border);}
+    .qual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+    .qual-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:flex-start;gap:10px;transition:border-color .2s;}
+    .qual-card:hover{border-color:var(--muted2);}
+    .qual-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+    .qual-text{font-size:.82rem;color:var(--muted2);line-height:1.5;}
+    .page-nav{display:flex;justify-content:flex-start;margin-top:48px;padding-top:20px;border-top:1px solid var(--border);}
+    .page-nav a{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted2);text-decoration:none;padding:8px 16px;border:1px solid var(--border);border-radius:7px;transition:all .2s;}
+    .page-nav a:hover{border-color:var(--accent);color:var(--accent-l);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .section{animation:fadeUp .4s ease both;}
+    .section:nth-child(2){animation-delay:.05s;}
+    .section:nth-child(3){animation-delay:.1s;}
+    @media(max-width:640px){nav{padding:0 16px;}.nav-links{display:none;}.qual-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="gate.html" class="nav-logo">HA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" id="nav-home">Accueil</a></li>
+    <li><a href="competences.html" id="nav-comp">Compétences</a></li>
+    <li><a href="projets.html" id="nav-proj">Projets</a></li>
+    <li><a href="formation.html" class="active" id="nav-form">Formation</a></li>
+  </ul>
+</nav>
+<div class="page-wrapper">
+  <div class="breadcrumb"><a href="index.html" id="bc-home">Accueil</a> / <span id="bc-form">Formation</span></div>
+  <h1 id="page-title">Formation</h1>
+
+  <div class="section">
+    <div class="section-header" id="sec-parcours">Parcours académique</div>
+
+    <div class="tl-card current">
+      <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-badge" id="badge-current">En cours</div>
+        <div class="tl-date">2025 – 2026</div>
+        <div class="tl-title">BUT Réseaux & Télécommunications</div>
+        <div class="tl-school" id="f1-school">IUT de Colmar — Université de Haute-Alsace</div>
+        <p class="tl-body" id="f1-body">Première année du Bachelor Universitaire de Technologie spécialité Réseaux & Télécommunications. Formation couvrant les réseaux, télécoms, systèmes et développement. Objectif : cybersécurité en 2ème année.</p>
+        <div class="tags"><span class="tag">Réseaux</span><span class="tag">Télécommunications</span><span class="tag">Cybersécurité</span><span class="tag">Linux</span><span class="tag">Python</span></div>
+        <div class="tl-links">
+          <a href="https://www.iutcolmar.uha.fr/" target="_blank" class="tl-link" id="f1-l1">Site IUT Colmar</a>
+          <a href="https://maps.app.goo.gl/tCHp7J8TSJt6WmH86" target="_blank" class="tl-link" id="f1-l2">Localisation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot-col"><div class="tl-dot old"></div><div class="tl-line"></div></div>
+      <div>
+        <div class="tl-date">2022 – 2025</div>
+        <div class="tl-title" id="f2-title">BAC STI2D</div>
+        <div class="tl-school" id="f2-school">Lycée Georges Beaumont — Saint-Dié-des-Vosges</div>
+        <p class="tl-body" id="f2-body">Baccalauréat technologique Sciences et Technologies de l'Industrie et du Développement Durable. Formation polyvalente couvrant l'ingénierie, l'informatique et l'électronique. Plusieurs projets techniques réalisés (serre automatisée, site web).</p>
+        <div class="tl-links">
+          <a href="https://lyceebaumont.fr/" target="_blank" class="tl-link" id="f2-l1">Site du lycée</a>
+          <a href="https://maps.app.goo.gl/SiaSZNB4YdDB3JRB7" target="_blank" class="tl-link" id="f2-l2">Localisation</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-card">
+      <div class="tl-dot-col"><div class="tl-dot old"></div></div>
+      <div>
+        <div class="tl-date">2022</div>
+        <div class="tl-title" id="f3-title">Brevet des collèges</div>
+        <div class="tl-school" id="f3-school">Diplôme national du brevet</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" id="sec-qual">Qualités personnelles</div>
+    <div class="qual-grid">
+      <div class="qual-card"><div class="qual-icon">🎯</div><div class="qual-text" id="q1">Rigoureux et organisé dans tout ce qu'il entreprend</div></div>
+      <div class="qual-card"><div class="qual-icon">⚡</div><div class="qual-text" id="q2">Grande capacité d'apprentissage et adaptation rapide</div></div>
+      <div class="qual-card"><div class="qual-icon">🤝</div><div class="qual-text" id="q3">À l'écoute et orienté travail en équipe</div></div>
+      <div class="qual-card"><div class="qual-icon">💪</div><div class="qual-text" id="q4">Discipline régulière dans les activités sportives</div></div>
+      <div class="qual-card"><div class="qual-icon">🔄</div><div class="qual-text" id="q5">Polyvalent — à l'aise en informatique comme sur le terrain</div></div>
+      <div class="qual-card"><div class="qual-icon">✅</div><div class="qual-text" id="q6">Sérieux dans les apprentissages, fournit un travail de qualité</div></div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="projets.html" id="nav-back">← Projets</a>
+  </div>
+</div>
+
+<script>
+  const lang=localStorage.getItem('lang')||'fr';
+  const TR={
+    fr:{navHome:'Accueil',navComp:'Compétences',navProj:'Projets',navForm:'Formation',bcHome:'Accueil',bcForm:'Formation',pageTitle:'Formation',secParcours:'Parcours académique',badgeCurrent:'En cours',f1School:'IUT de Colmar — Université de Haute-Alsace',f1Body:"Première année du BUT Réseaux & Télécommunications. Formation couvrant les réseaux, télécoms, systèmes et développement. Objectif : cybersécurité en 2ème année.",f1L1:'Site IUT Colmar',f1L2:'Localisation',f2Title:'BAC STI2D',f2School:'Lycée Georges Beaumont — Saint-Dié-des-Vosges',f2Body:"Baccalauréat technologique STI2D. Formation polyvalente couvrant l'ingénierie, l'informatique et l'électronique.",f2L1:'Site du lycée',f2L2:'Localisation',f3Title:'Brevet des collèges',f3School:'Diplôme national du brevet',secQual:'Qualités personnelles',q1:'Rigoureux et organisé dans tout ce qu\'il entreprend',q2:'Grande capacité d\'apprentissage et adaptation rapide',q3:'À l\'écoute et orienté travail en équipe',q4:'Discipline régulière dans les activités sportives',q5:'Polyvalent — à l\'aise en informatique comme sur le terrain',q6:'Sérieux dans les apprentissages, fournit un travail de qualité',navBack:'← Projets'},
+    en:{navHome:'Home',navComp:'Skills',navProj:'Projects',navForm:'Education',bcHome:'Home',bcForm:'Education',pageTitle:'Education',secParcours:'Academic background',badgeCurrent:'In progress',f1School:'IUT de Colmar — Université de Haute-Alsace',f1Body:'First year of the BUT Networks & Telecommunications degree. Covers networking, telecom, systems and development. Goal: cybersecurity specialisation in year 2.',f1L1:'IUT Colmar website',f1L2:'Location',f2Title:'STI2D Baccalaureate',f2School:'Lycée Georges Beaumont — Saint-Dié-des-Vosges',f2Body:'Technological baccalaureate covering engineering, IT and electronics. Several technical projects completed.',f2L1:'High school website',f2L2:'Location',f3Title:'Middle school diploma',f3School:'French national diploma',secQual:'Personal qualities',q1:'Rigorous and organised in everything undertaken',q2:'Fast learner, adapts quickly to new environments',q3:'Good listener, team-oriented',q4:'Regular discipline in sports activities',q5:'Versatile — comfortable in IT and hands-on work',q6:'Takes learning seriously, delivers quality work',navBack:'← Projects'}
+  };
+  function applyLang(){
+    const t=TR[lang];
+    const m={'nav-home':t.navHome,'nav-comp':t.navComp,'nav-proj':t.navProj,'nav-form':t.navForm,'bc-home':t.bcHome,'bc-form':t.bcForm,'page-title':t.pageTitle,'sec-parcours':t.secParcours,'badge-current':t.badgeCurrent,'f1-school':t.f1School,'f1-body':t.f1Body,'f1-l1':t.f1L1,'f1-l2':t.f1L2,'f2-title':t.f2Title,'f2-school':t.f2School,'f2-body':t.f2Body,'f2-l1':t.f2L1,'f2-l2':t.f2L2,'f3-title':t.f3Title,'f3-school':t.f3School,'sec-qual':t.secQual,'q1':t.q1,'q2':t.q2,'q3':t.q3,'q4':t.q4,'q5':t.q5,'q6':t.q6,'nav-back':t.navBack};
+    Object.entries(m).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
+    document.documentElement.lang=lang;
+  }
+  applyLang();
+</script>
+</body>
+</html>

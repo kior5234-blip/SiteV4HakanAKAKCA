@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Hakan Akakca — Compétences</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e1117;--surface:#161b27;--border:#20293a;--text:#cdd5e0;--muted:#3a4a60;--muted2:#5a6a80;--tag-bg:#1a2030;--accent:#8b5cf6;--accent-l:#a78bfa;--accent-bg:rgba(139,92,246,.15);--accent-br:rgba(139,92,246,.3);--nav-h:60px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;}
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(14,17,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:100;}
+    .nav-logo{font-family:'DM Mono',monospace;font-size:1rem;color:var(--text);text-decoration:none;}
+    .nav-logo span{color:var(--accent-l);}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{color:var(--muted2);text-decoration:none;font-size:.82rem;padding:5px 12px;border-radius:6px;transition:all .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface);}
+    .page-wrapper{padding-top:calc(var(--nav-h)+48px);padding-bottom:80px;max-width:900px;margin:0 auto;padding-left:24px;padding-right:24px;}
+    .breadcrumb{font-size:.75rem;color:var(--muted2);margin-bottom:20px;}
+    .breadcrumb a{color:var(--muted2);text-decoration:none;}
+    .breadcrumb a:hover{color:var(--accent-l);}
+    h1{font-size:2rem;font-weight:300;letter-spacing:-.02em;margin-bottom:10px;}
+    .page-desc{font-size:.88rem;color:var(--muted2);max-width:520px;line-height:1.7;margin-bottom:28px;}
+    .legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:0;}
+    .legend-item{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted2);}
+    .legend-dot{width:7px;height:7px;border-radius:50%;}
+    .section{margin-bottom:52px;}
+    .section-header{margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:10px;}
+    .section-title{font-size:1rem;font-weight:500;color:var(--text);}
+    .section-comment{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted2);}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:10px;}
+    .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 15px;display:flex;align-items:flex-start;gap:11px;transition:border-color .2s,transform .2s;}
+    .skill-card:hover{border-color:var(--muted2);transform:translateY(-1px);}
+    .skill-logo{width:28px;height:28px;border-radius:6px;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .skill-logo img{width:16px;height:16px;filter:brightness(0.5) invert(0.5);}
+    .skill-logo-txt{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted2);font-weight:500;}
+    .skill-info{flex:1;min-width:0;}
+    .skill-name{font-size:.85rem;font-weight:500;color:var(--text);margin-bottom:2px;}
+    .skill-sub{font-size:.72rem;color:var(--muted2);margin-bottom:6px;line-height:1.4;}
+    .badge{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:500;padding:2px 8px;border-radius:4px;letter-spacing:.02em;}
+    .badge-a{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3);}
+    .badge-e{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.2);}
+    .badge-p{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2);}
+    .badge-a::before,.badge-e::before,.badge-p::before{content:'';width:5px;height:5px;border-radius:50%;}
+    .badge-a::before{background:#a78bfa;}
+    .badge-e::before{background:#4ade80;}
+    .badge-p::before{background:#fbbf24;}
+    .page-nav{display:flex;justify-content:space-between;margin-top:48px;padding-top:20px;border-top:1px solid var(--border);}
+    .page-nav a{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted2);text-decoration:none;padding:8px 16px;border:1px solid var(--border);border-radius:7px;transition:all .2s;}
+    .page-nav a:hover{border-color:var(--accent);color:var(--accent-l);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .section{animation:fadeUp .4s ease both;}
+    .section:nth-child(2){animation-delay:.05s;}
+    .section:nth-child(3){animation-delay:.1s;}
+    .section:nth-child(4){animation-delay:.15s;}
+    @media(max-width:640px){nav{padding:0 16px;}.nav-links{display:none;}.skills-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="gate.html" class="nav-logo">HA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" id="nav-home">Accueil</a></li>
+    <li><a href="competences.html" class="active" id="nav-comp">Compétences</a></li>
+    <li><a href="projets.html" id="nav-proj">Projets</a></li>
+    <li><a href="formation.html" id="nav-form">Formation</a></li>
+  </ul>
+</nav>
+<div class="page-wrapper">
+  <div class="breadcrumb"><a href="index.html" id="bc-home">Accueil</a> / <span id="bc-comp">Compétences</span></div>
+  <h1 id="page-title">Compétences</h1>
+  <p class="page-desc" id="page-desc">Un état honnête de mes compétences techniques, acquises en formation BUT RT et en projets pratiques.</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa;"></div><span id="leg-a">Acquis — maîtrisé et pratiqué</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4ade80;"></div><span id="leg-e">En cours — apprentissage actif</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#fbbf24;"></div><span id="leg-p">À approfondir — notions acquises</span></div>
+  </div>
+
+  <div style="margin-top:36px;">
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title" id="s1-title">Réseaux</span>
+      <span class="section-comment" id="s1-comment">// Administration, protocoles, infrastructure</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/cisco/888" alt="Cisco"></div><div class="skill-info"><div class="skill-name">Cisco IOS</div><div class="skill-sub" id="c1-sub">Routeurs, switches, config</div><span class="badge badge-a" id="c1-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">VLAN</div></div><div class="skill-info"><div class="skill-name">VLAN / STP</div><div class="skill-sub" id="c2-sub">Segmentation, spanning tree</div><span class="badge badge-a" id="c2-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">DHCP</div></div><div class="skill-info"><div class="skill-name">DHCP / DNS</div><div class="skill-sub" id="c3-sub">Services réseau de base</div><span class="badge badge-a" id="c3-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">RIP</div></div><div class="skill-info"><div class="skill-name">RIPv2 / Routage</div><div class="skill-sub" id="c4-sub">Routage dynamique inter-VLAN</div><span class="badge badge-a" id="c4-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/wireshark/888" alt="Wireshark"></div><div class="skill-info"><div class="skill-name">Wireshark</div><div class="skill-sub" id="c5-sub">Analyse de trames</div><span class="badge badge-a" id="c5-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/gnu/888" alt="GNS3"></div><div class="skill-info"><div class="skill-name">GNS3</div><div class="skill-sub" id="c6-sub">Simulation réseau complète</div><span class="badge badge-a" id="c6-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">OSI</div></div><div class="skill-info"><div class="skill-name">Modèle OSI / TCP-IP</div><div class="skill-sub" id="c7-sub">Protocoles, encapsulation</div><span class="badge badge-a" id="c7-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">IPv6</div></div><div class="skill-info"><div class="skill-name">IPv6</div><div class="skill-sub" id="c8-sub">Adressage, migration</div><span class="badge badge-p" id="c8-b">À approfondir</span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title" id="s2-title">Systèmes & Informatique</span>
+      <span class="section-comment" id="s2-comment">// Linux, virtualisation, administration</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/linux/888" alt="Linux"></div><div class="skill-info"><div class="skill-name">Linux Debian</div><div class="skill-sub" id="s1-sub">Administration, commandes</div><span class="badge badge-a" id="s1-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/virtualbox/888" alt="VirtualBox"></div><div class="skill-info"><div class="skill-name">VirtualBox</div><div class="skill-sub" id="s2-sub">VMs, réseaux virtuels</div><span class="badge badge-a" id="s2-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">WIN</div></div><div class="skill-info"><div class="skill-name">Windows</div><div class="skill-sub" id="s3-sub">Installation, gestion users</div><span class="badge badge-a" id="s3-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/docker/888" alt="Docker"></div><div class="skill-info"><div class="skill-name">Docker</div><div class="skill-sub" id="s4-sub">Conteneurs, déploiement</div><span class="badge badge-e" id="s4-b">En cours</span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title" id="s3-title">Télécommunications</span>
+      <span class="section-comment" id="s3-comment">// WiFi, signal, câblage, infrastructure</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">WiFi</div></div><div class="skill-info"><div class="skill-name">Mesure WiFi / Heatmap</div><div class="skill-sub" id="t1-sub">Acrylic, analyse couverture</div><span class="badge badge-a" id="t1-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">PoE</div></div><div class="skill-info"><div class="skill-name">PoE 802.3af</div><div class="skill-sub" id="t2-sub">AP Cisco Aironet</div><span class="badge badge-a" id="t2-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">RJ45</div></div><div class="skill-info"><div class="skill-name">Câblage réseau</div><div class="skill-sub" id="t3-sub">Norme T568B, fabrication</div><span class="badge badge-a" id="t3-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">FO</div></div><div class="skill-info"><div class="skill-name">Fibre optique</div><div class="skill-sub" id="t4-sub">Notions, types de câbles</div><span class="badge badge-p" id="t4-b">À approfondir</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/cisco/888" alt="Packet Tracer"></div><div class="skill-info"><div class="skill-name">Packet Tracer</div><div class="skill-sub" id="t5-sub">Simulation, WLC, DHCP/DNS</div><span class="badge badge-a" id="t5-b">Acquis</span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title" id="s4-title">Développement & Scripting</span>
+      <span class="section-comment" id="s4-comment">// Code, automatisation, web</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/python/888" alt="Python"></div><div class="skill-info"><div class="skill-name">Python</div><div class="skill-sub" id="d1-sub">Scripts, PyQt5, JSON</div><span class="badge badge-a" id="d1-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/html5/888" alt="HTML5"></div><div class="skill-info"><div class="skill-name">HTML / CSS</div><div class="skill-sub" id="d2-sub">Intégration, mise en page</div><span class="badge badge-a" id="d2-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">PS1</div></div><div class="skill-info"><div class="skill-name">PowerShell</div><div class="skill-sub" id="d3-sub">Scripts, suppression fichiers</div><span class="badge badge-a" id="d3-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><div class="skill-logo-txt">ARD</div></div><div class="skill-info"><div class="skill-name">Arduino (C)</div><div class="skill-sub" id="d4-sub">Capteurs, actionneurs, IoT</div><span class="badge badge-a" id="d4-b">Acquis</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/git/888" alt="Git"></div><div class="skill-info"><div class="skill-name">Git / GitHub</div><div class="skill-sub" id="d5-sub">Versioning, dépôts</div><span class="badge badge-e" id="d5-b">En cours</span></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="https://cdn.simpleicons.org/javascript/888" alt="JS"></div><div class="skill-info"><div class="skill-name">JavaScript</div><div class="skill-sub" id="d6-sub">Interactions web</div><span class="badge badge-p" id="d6-b">À approfondir</span></div></div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="page-nav">
+    <a href="index.html" id="nav-back">← Accueil</a>
+    <a href="projets.html" id="nav-next">Projets →</a>
+  </div>
+</div>
+
+<script>
+  const lang=localStorage.getItem('lang')||'fr';
+  const TR={
+    fr:{navHome:'Accueil',navComp:'Compétences',navProj:'Projets',navForm:'Formation',bcHome:'Accueil',bcComp:'Compétences',pageTitle:'Compétences',pageDesc:"Un état honnête de mes compétences techniques, acquises en formation BUT RT et en projets pratiques.",legA:'Acquis — maîtrisé et pratiqué',legE:'En cours — apprentissage actif',legP:'À approfondir — notions acquises',s1Title:'Réseaux',s1Comment:'// Administration, protocoles, infrastructure',s2Title:'Systèmes & Informatique',s2Comment:'// Linux, virtualisation, administration',s3Title:'Télécommunications',s3Comment:'// WiFi, signal, câblage, infrastructure',s4Title:'Développement & Scripting',s4Comment:'// Code, automatisation, web',navBack:'← Accueil',navNext:'Projets →',bA:'Acquis',bE:'En cours',bP:'À approfondir',c1s:'Routeurs, switches, config',c2s:'Segmentation, spanning tree',c3s:'Services réseau de base',c4s:'Routage dynamique inter-VLAN',c5s:'Analyse de trames',c6s:'Simulation réseau complète',c7s:'Protocoles, encapsulation',c8s:'Adressage, migration',s1s:'Administration, commandes',s2s:'VMs, réseaux virtuels',s3s:'Installation, gestion users',s4s:'Conteneurs, déploiement',t1s:'Acrylic, analyse couverture',t2s:'AP Cisco Aironet',t3s:'Norme T568B, fabrication',t4s:'Notions, types de câbles',t5s:'Simulation, WLC, DHCP/DNS',d1s:'Scripts, PyQt5, JSON',d2s:'Intégration, mise en page',d3s:'Scripts, suppression fichiers',d4s:'Capteurs, actionneurs, IoT',d5s:'Versioning, dépôts',d6s:'Interactions web'},
+    en:{navHome:'Home',navComp:'Skills',navProj:'Projects',navForm:'Education',bcHome:'Home',bcComp:'Skills',pageTitle:'Skills',pageDesc:'An honest overview of my technical skills, built through BUT RT coursework and hands-on projects.',legA:'Acquired — mastered in projects',legE:'In progress — actively learning',legP:'To deepen — basic notions',s1Title:'Networking',s1Comment:'// Administration, protocols, infrastructure',s2Title:'Systems & IT',s2Comment:'// Linux, virtualisation, administration',s3Title:'Telecommunications',s3Comment:'// WiFi, signal, cabling, infrastructure',s4Title:'Development & Scripting',s4Comment:'// Code, automation, web',navBack:'← Home',navNext:'Projects →',bA:'Acquired',bE:'In progress',bP:'To deepen',c1s:'Routers, switches, config',c2s:'Segmentation, spanning tree',c3s:'Basic network services',c4s:'Dynamic inter-VLAN routing',c5s:'Frame analysis',c6s:'Full network simulation',c7s:'Protocols, encapsulation',c8s:'Addressing, migration',s1s:'Administration, commands',s2s:'VMs, virtual networks',s3s:'Install, user management',s4s:'Containers, deployment',t1s:'Acrylic, coverage analysis',t2s:'Cisco Aironet AP',t3s:'T568B standard, cabling',t4s:'Notions, cable types',t5s:'Simulation, WLC, DHCP/DNS',d1s:'Scripts, PyQt5, JSON',d2s:'Integration, layout',d3s:'Scripts, file deletion',d4s:'Sensors, actuators, IoT',d5s:'Versioning, repositories',d6s:'Web interactions'}
+  };
+  function applyLang(){
+    const t=TR[lang];
+    const ids={
+      'nav-home':t.navHome,'nav-comp':t.navComp,'nav-proj':t.navProj,'nav-form':t.navForm,
+      'bc-home':t.bcHome,'bc-comp':t.bcComp,'page-title':t.pageTitle,'page-desc':t.pageDesc,
+      'leg-a':t.legA,'leg-e':t.legE,'leg-p':t.legP,
+      's1-title':t.s1Title,'s1-comment':t.s1Comment,'s2-title':t.s2Title,'s2-comment':t.s2Comment,
+      's3-title':t.s3Title,'s3-comment':t.s3Comment,'s4-title':t.s4Title,'s4-comment':t.s4Comment,
+      'nav-back':t.navBack,'nav-next':t.navNext,
+      'c1-sub':t.c1s,'c2-sub':t.c2s,'c3-sub':t.c3s,'c4-sub':t.c4s,'c5-sub':t.c5s,'c6-sub':t.c6s,'c7-sub':t.c7s,'c8-sub':t.c8s,
+      's1-sub':t.s1s,'s2-sub':t.s2s,'s3-sub':t.s3s,'s4-sub':t.s4s,
+      't1-sub':t.t1s,'t2-sub':t.t2s,'t3-sub':t.t3s,'t4-sub':t.t4s,'t5-sub':t.t5s,
+      'd1-sub':t.d1s,'d2-sub':t.d2s,'d3-sub':t.d3s,'d4-sub':t.d4s,'d5-sub':t.d5s,'d6-sub':t.d6s,
+      'c1-b':t.bA,'c2-b':t.bA,'c3-b':t.bA,'c4-b':t.bA,'c5-b':t.bA,'c6-b':t.bA,'c7-b':t.bA,'c8-b':t.bP,
+      's1-b':t.bA,'s2-b':t.bA,'s3-b':t.bA,'s4-b':t.bE,
+      't1-b':t.bA,'t2-b':t.bA,'t3-b':t.bA,'t4-b':t.bP,'t5-b':t.bA,
+      'd1-b':t.bA,'d2-b':t.bA,'d3-b':t.bA,'d4-b':t.bA,'d5-b':t.bE,'d6-b':t.bP
+    };
+    Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
+    document.documentElement.lang=lang;
+  }
+  applyLang();
+</script>
+</body>
+</html>

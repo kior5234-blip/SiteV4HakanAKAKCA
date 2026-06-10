@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Hakan Akakca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e1117;--surface:#161b27;--border:#20293a;--text:#cdd5e0;--muted:#3a4a60;--muted2:#5a6a80;--tag-bg:#1a2030;--accent:#8b5cf6;--accent-l:#a78bfa;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+    .gate{width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px;}
+    .gate-header{display:flex;justify-content:space-between;align-items:center;}
+    .gate-logo{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--text);}
+    .gate-logo span{color:var(--accent-l);}
+    .gate-updated{font-size:.72rem;color:var(--muted2);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:5px;}
+    .gate-updated::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px rgba(74,222,128,.2);}
+    .gate-hero{padding:6px 0 2px;}
+    .gate-name{font-size:2rem;font-weight:300;letter-spacing:-.02em;color:var(--text);margin-bottom:4px;}
+    .gate-name strong{color:var(--accent-l);font-weight:300;}
+    .gate-sub{font-size:.8rem;color:var(--muted2);font-family:'DM Mono',monospace;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+    .card-label{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+
+    /* FRIEND */
+    .friend-desc{font-size:.8rem;color:var(--muted2);line-height:1.6;margin-bottom:12px;}
+    .friend-row{display:flex;gap:8px;}
+    .pw-input{flex:1;background:var(--tag-bg);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:.83rem;color:var(--text);outline:none;transition:border .2s;}
+    .pw-input:focus{border-color:var(--accent);}
+    .pw-btn{background:var(--accent);border:none;border-radius:7px;padding:8px 16px;font-size:.82rem;font-weight:500;color:#fff;cursor:pointer;transition:opacity .2s;white-space:nowrap;}
+    .pw-btn:hover{opacity:.85;}
+    .pw-error{font-size:.72rem;color:#f87171;margin-top:6px;min-height:14px;}
+    .friend-active{display:none;align-items:center;gap:7px;font-size:.82rem;color:#4ade80;padding:8px 10px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:7px;}
+    .friend-active.show{display:flex;}
+    .friend-active::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;}
+
+    /* CV */
+    .cv-locked-msg{font-size:.78rem;color:var(--muted2);margin-bottom:10px;display:flex;align-items:center;gap:6px;padding:8px 10px;background:var(--tag-bg);border-radius:7px;border:1px solid var(--border);}
+    .cv-locked-msg.hidden{display:none;}
+    .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .cv-btn{background:var(--tag-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--text);cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:7px;transition:all .2s;position:relative;}
+    .cv-btn.unlocked:hover{border-color:var(--accent);color:var(--accent-l);}
+    .cv-btn.locked{opacity:.35;cursor:not-allowed;pointer-events:none;}
+    .cv-btn svg{opacity:.5;flex-shrink:0;}
+    .cv-lock-icon{margin-left:auto;opacity:.4;font-size:.7rem;}
+
+    /* LANG */
+    .lang-row{display:flex;gap:8px;}
+    .lang-btn{flex:1;background:var(--tag-bg);border:1px solid var(--border);border-radius:8px;padding:8px;font-size:.82rem;font-weight:500;color:var(--muted2);cursor:pointer;transition:all .2s;text-align:center;}
+    .lang-btn.active{background:rgba(139,92,246,.15);border-color:var(--accent);color:var(--accent-l);}
+    .lang-btn:hover:not(.active){border-color:var(--muted2);color:var(--text);}
+
+    /* ENTER */
+    .gate-enter{background:var(--accent);border:none;border-radius:10px;padding:13px 24px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;color:#fff;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;}
+    .gate-enter:hover{opacity:.85;}
+    .gate-enter svg{transition:transform .2s;}
+    .gate-enter:hover svg{transform:translateX(3px);}
+  </style>
+</head>
+<body>
+<div class="gate">
+
+  <div class="gate-header">
+    <span class="gate-logo">HA<span>.</span></span>
+    <span class="gate-updated" id="lastUpdate">Juin 2026</span>
+  </div>
+
+  <div class="gate-hero">
+    <div class="gate-name">Hakan <strong>Akakca</strong></div>
+    <div class="gate-sub" id="gate-sub">BUT Réseaux & Télécommunications · IUT de Colmar</div>
+  </div>
+
+  <!-- FRIEND MODE -->
+  <div class="card">
+    <div class="card-label">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <span id="friend-label">Mode ami</span>
+    </div>
+    <p class="friend-desc" id="friend-desc">Débloque les informations privées (numéro, email) et le téléchargement des CV. Réservé aux personnes de confiance.</p>
+    <div class="friend-row" id="friendForm">
+      <input class="pw-input" type="password" id="pwInput" placeholder="Mot de passe…" onkeydown="if(event.key==='Enter')checkPw()">
+      <button class="pw-btn" id="pw-btn-label" onclick="checkPw()">Accéder</button>
+    </div>
+    <div class="pw-error" id="pwError"></div>
+    <div class="friend-active" id="friendActive">
+      <span id="friend-active-text">Mode ami activé — CV et infos débloqués</span>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div class="card">
+    <div class="card-label">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+      <span id="cv-label">Télécharger CV</span>
+    </div>
+    <div class="cv-locked-msg" id="cvLockedMsg">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <span id="cv-locked-text">Entre le code ami pour télécharger les CV</span>
+    </div>
+    <div class="cv-grid">
+      <a class="cv-btn locked" id="cvGenBtn" href="CV-Hakan-AKakca-B.pdf" download>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span id="cv-gen-label">CV Général</span>
+        <span class="cv-lock-icon" id="cvGenLock">🔒</span>
+      </a>
+      <a class="cv-btn locked" id="cvAltBtn" href="CV-Hakan-Akakca-A.pdf" download>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span id="cv-alt-label">CV Alternance</span>
+        <span class="cv-lock-icon" id="cvAltLock">🔒</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- LANGUE -->
+  <div class="card">
+    <div class="card-label">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+      <span id="lang-label">Langue / Language</span>
+    </div>
+    <div class="lang-row">
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">🇫🇷 Français</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
+    </div>
+  </div>
+
+  <button class="gate-enter" onclick="enter()">
+    <span id="enter-label">Entrer dans le portfolio</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+
+</div>
+
+<script>
+  const HASH='d654d711fa1d24e32543c3415d81c3ca4968fe1669857bee2faf3efeef796aca';
+  let lang=localStorage.getItem('lang')||'fr';
+  let friendMode=sessionStorage.getItem('friendMode')==='1';
+
+  const T={
+    fr:{
+      sub:'BUT Réseaux & Télécommunications · IUT de Colmar',
+      friendLabel:'Mode ami',
+      friendDesc:'Débloque les informations privées (numéro, email) et le téléchargement des CV. Réservé aux personnes de confiance.',
+      pwPlaceholder:'Mot de passe…',pwBtn:'Accéder',pwError:'Mot de passe incorrect.',
+      friendActiveText:'Mode ami activé — CV et infos débloqués',
+      cvLabel:'Télécharger CV',
+      cvLockedText:'Entre le code ami pour télécharger les CV',
+      cvGen:'CV Général',cvAlt:'CV Alternance',
+      langLabel:'Langue / Language',
+      enter:'Entrer dans le portfolio',
+      updated:'Juin 2026'
+    },
+    en:{
+      sub:'BUT Networks & Telecommunications · IUT de Colmar',
+      friendLabel:'Friend mode',
+      friendDesc:'Unlocks private info (phone, email) and CV downloads. Reserved for trusted contacts.',
+      pwPlaceholder:'Password…',pwBtn:'Access',pwError:'Wrong password.',
+      friendActiveText:'Friend mode active — CV and info unlocked',
+      cvLabel:'Download resume',
+      cvLockedText:'Enter friend code to download resumes',
+      cvGen:'General CV',cvAlt:'Work-study CV',
+      langLabel:'Language / Langue',
+      enter:'Enter portfolio',
+      updated:'June 2026'
+    }
+  };
+
+  async function hashStr(s){
+    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function checkPw(){
+    const v=document.getElementById('pwInput').value;
+    const h=await hashStr(v);
+    if(h===HASH){
+      sessionStorage.setItem('friendMode','1');
+      friendMode=true;
+      unlockCV();
+      document.getElementById('friendForm').style.display='none';
+      document.getElementById('pwError').textContent='';
+      document.getElementById('friendActive').classList.add('show');
+    } else {
+      document.getElementById('pwError').textContent=T[lang].pwError;
+    }
+  }
+
+  function unlockCV(){
+    const gen=document.getElementById('cvGenBtn');
+    const alt=document.getElementById('cvAltBtn');
+    gen.classList.remove('locked');gen.classList.add('unlocked');
+    alt.classList.remove('locked');alt.classList.add('unlocked');
+    document.getElementById('cvGenLock').textContent='';
+    document.getElementById('cvAltLock').textContent='';
+    document.getElementById('cvLockedMsg').classList.add('hidden');
+  }
+
+  function setLang(l){
+    lang=l;localStorage.setItem('lang',l);
+    document.getElementById('btn-fr').classList.toggle('active',l==='fr');
+    document.getElementById('btn-en').classList.toggle('active',l==='en');
+    applyLang();
+  }
+
+  function applyLang(){
+    const t=T[lang];
+    document.getElementById('gate-sub').textContent=t.sub;
+    document.getElementById('friend-label').textContent=t.friendLabel;
+    document.getElementById('friend-desc').textContent=t.friendDesc;
+    document.getElementById('pwInput').placeholder=t.pwPlaceholder;
+    document.getElementById('pw-btn-label').textContent=t.pwBtn;
+    document.getElementById('friend-active-text').textContent=t.friendActiveText;
+    document.getElementById('cv-label').textContent=t.cvLabel;
+    document.getElementById('cv-locked-text').textContent=t.cvLockedText;
+    document.getElementById('cv-gen-label').textContent=t.cvGen;
+    document.getElementById('cv-alt-label').textContent=t.cvAlt;
+    document.getElementById('lang-label').textContent=t.langLabel;
+    document.getElementById('enter-label').textContent=t.enter;
+    document.getElementById('lastUpdate').textContent=t.updated;
+    document.getElementById('pwError').textContent='';
+    document.documentElement.lang=lang;
+  }
+
+  function enter(){
+    localStorage.setItem('lang',lang);
+    window.location.href='index.html';
+  }
+
+  if(friendMode){
+    document.getElementById('friendForm').style.display='none';
+    document.getElementById('friendActive').classList.add('show');
+    unlockCV();
+  }
+  if(lang!=='fr')setLang(lang);
+  else applyLang();
+</script>
+</body>
+</html>
